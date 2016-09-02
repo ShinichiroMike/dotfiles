@@ -118,7 +118,6 @@ set fillchars+=vert:\   " Remove unpleasant pipes from vertical splits
 set showmode            " always show which more are we in
 set laststatus=2        " always show statusbar
 set wildmenu            " enable visual wildmenu
-
 set nowrap              " don't wrap long lines
 set number              " show line numbers
 set relativenumber      " show numbers as relative by default
@@ -126,6 +125,10 @@ set cursorline          " highlight line where the cursor is
 "set cursorcolumn        " highlight column where the cursor is
 set showmatch           " higlight matching parentheses and brackets
 
+" Transparency
+highlight NonText ctermbg=none
+highlight Normal ctermbg=none
+highlight LineNr ctermfg=grey ctermbg=none
 " =====================
 " 6. MAPS AND FUNCTIONS
 " =====================
