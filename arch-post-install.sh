@@ -23,6 +23,10 @@ do
             yaourt -S git-extras
             echo "************installing stow************"
             yaourt -S stow
+            echo "************configuring git************"
+            cd ~/.dotfiles
+            stow git
+            cd ~/
             echo "************installing open-ssh************"
             yaourt -S open-ssh
             echo "************creating ssh-key************"

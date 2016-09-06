@@ -1,0 +1,28 @@
+[user]
+  email = miguelo_0000@hotmail.com
+  name = shinichiroMike
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow 
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[alias]
+  y = diff "@{yesterday}"
+  w = whatchanged
+  c = commit
+  st = status
+  dc = diff --cached
+  co = checkout
+  slog = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
