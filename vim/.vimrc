@@ -129,6 +129,9 @@ set showmatch           " higlight matching parentheses and brackets
 highlight NonText ctermbg=none
 highlight Normal ctermbg=none
 highlight LineNr ctermfg=grey ctermbg=none
+hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
+hi TabLine ctermfg=Black ctermbg=LightBlue
+hi TabLineSel ctermfg=Black ctermbg=LightBlue
 " =====================
 " 6. MAPS AND FUNCTIONS
 " =====================
