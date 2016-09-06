@@ -1,44 +1,95 @@
 ## PACKAGES
 
-###############################################################################
-#i3 STUFF
-###############################################################################
-echo "************installing i3************"
-yaourt -S i3-wm
-yaourt -S i3status
-yaourt -S i3blocks
-yaourt -S i3lock-blur
-
+echo "************configuring yaourt************"
+touch .yaourtrc
+echo CONFIRM=1 >> .yaourtrc
+echo BUILD_NOCONFIRM=1 >> .yaourtrc
+echo EDITFILES=0 >> .yaourtrc
 ###############################################################################
 # GIT
 ###############################################################################
 echo "************installing git************"
 yaourt -S git
+echo "************installing git extras************"
 yaourt -S git-extras
+echo "************installing stow************"
+yaourt -S stow
+echo "************installing open-ssh************"
+yaourt -S open-ssh
+echo "************creating ssh-key************"
+ssh-keygen -t rsa -b 4096 -C "miguelo_0000@hotmail.com"
+cd ~/.ssh
+chmod +x rsa_id.pub
+cat rsa_id.pub
+read -n1 -r -p "Press any key to continue..."
+cd ~/
+
+###############################################################################
+#i3 STUFF
+###############################################################################
+echo "************installing i3 wm************"
+yaourt -S i3-wm
+echo "************installing i3 status************"
+yaourt -S i3status
+echo "************installing i3 blocks************"
+yaourt -S i3blocks
+echo "************installing i3 lock-blur************"
+yaourt -S i3lock-blur
+echo "************creating xinit with i3************"
+cd ~/.dotfiles
+stow xinit
+cd ~/
+echo "************Start manually i3 to configure and then copy the dotfiles************"
 
 ###############################################################################
 # NODE
 ###############################################################################
 echo "************installing node enviroment************"
+echo "************installing nvm************"
 yaourt -S nvm
+echo "************installing node stable************"
 nvm install stable
 
 ###############################################################################
+#SHELL STUFF
+###############################################################################
+echo "************installing zsh************"
+yaourt -S zsh
+echo "************installing oh-my-zsh************"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" #oh-my-zsh
+echo "************installing tmux************"
+yaourt -S tmux
+echo "************installing tmuxifier************"
+git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+echo "************configuring zsh and tmux************"
+cd ~/.dotfiles
+stow zsh
+stow tmux
+cd ~/
+
+###############################################################################
+#VIM
+###############################################################################
+yaourt -S vim
+cd ~/.dotfiles
+stow vim
+cd ~/
+###############################################################################
 #OTHER SOFTWARE
 ###############################################################################
-yaourt -S zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" #oh-my-zsh
-yaourt -S tmux
-git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+echo "************installing gpick************"
 yaourt -S gpick
+echo "************installing spotify************"
 yaourt -S spotify
-yaourt -S stow
+echo "************installing ranger************"
 yaourt -S ranger
+echo "************installing dropbox************"
 yaourt -S dropbox
 
 ###############################################################################
 # ATOM
 ##############################################################################
+echo "************installing atom************"
 yaourt -S atom-editor
 #atom packages
 echo "************installing atom packages************"
