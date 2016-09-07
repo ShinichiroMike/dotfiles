@@ -28,12 +28,12 @@ do
             stow git
             cd ~/
             echo "************installing open-ssh************"
-            yaourt -S open-ssh
+            yaourt -S openssh
             echo "************creating ssh-key************"
             ssh-keygen -t rsa -b 4096 -C "miguelo_0000@hotmail.com"
             cd ~/.ssh
             chmod +x rsa_id.pub
-            cat rsa_id.pub
+            cat id_rsa.pub
             read -n1 -r -p "Press any key to continue..."
             cd ~/
             ;;
@@ -65,7 +65,7 @@ do
             echo "************installing nvm************"
             yaourt -S nvm
             echo "************installing node stable************"
-            nvm install stable
+	    /bin/zsh -i -c 'nvm install stable'
             ;;
         "Zsh/tmux/tmuxifier")
             echo "you chose Zsh/tmux/tmuxifier"
@@ -81,6 +81,7 @@ do
             echo "************installing tmuxifier************"
             git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
             echo "************configuring zsh and tmux************"
+	    rm .zshrc
             cd ~/.dotfiles
             stow zsh
             stow tmux
