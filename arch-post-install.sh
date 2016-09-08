@@ -5,6 +5,22 @@ function successOrFail {
     else
         echo $1 'has failed :('
     fi
+    sleep 2
+}
+function title {
+    echo "#####################################################################"
+    echo "#"
+    echo "#"
+    echo "#"
+    echo "#"
+    echo "####### $1 "
+    echo "#"
+    echo "#"
+    echo "#"
+    echo "#"
+    echo "#"
+    echo "######################################################################"
+    sleep 5
 }
 
 function isInstalled {
@@ -25,125 +41,129 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Config yaourt")
-            echo "you chose config yaourt"
-            echo "******************************************"
-            echo "************configuring yaourt************"
-            echo "******************************************"
+            title 'creating .yaourtrc'
             touch .yaourtrc
             successOrFail 'create yaourtrc'
             echo CONFIRM=1 >> .yaourtrc
             echo BUILD_NOCONFIRM=1 >> .yaourtrc
             echo EDITFILES=0 >> .yaourtrc
             successOrFail 'edit yaourt'
-            echo "************installing stow************"
+            title 'installing stow'
             isInstalled stow
+            clear
             ;;
         "Install and configure git")
             echo "you chose Install and configure git"
             ####################################################################
             # GIT
             ####################################################################
-            echo "**************************************"
-            echo "************INSTALLING GIT************"
-            echo "**************************************"
+            title 'GIT'
             isInstalled git
-            echo "**************************************"
-            echo "************INSTALLING GIT EXTRAS************"
-            echo "**************************************"
+            title 'git-extras'
             isInstalled git-extras
-            echo "************installing open-ssh************"
+            title 'openssh'
             isInstalled openssh
-            echo "************creating ssh-key************"
+            title 'creating ssh key for github'
             ssh-keygen -t rsa -b 4096 -C "miguelo_0000@hotmail.com"
             cd ~/.ssh
             chmod +x rsa_id.pub
             cat id_rsa.pub
             read -n1 -r -p "Press any key to continue..."
             cd ~/
-            echo "************Dowloading dotfiles************"
+            title 'Dotfiles'
             git clone git@github.com:ShinichiroMike/dotfiles.git
             mv dotfiles .dotfiles
             successOrFail 'dotfiles installation'
-            echo "************configuring git************"
+            title 'config git'
             cd ~/.dotfiles
             stow git
             successOrFail '.gitconfig installation'
             cd ~/
-
+            clear
             ;;
         "Install i3 package group")
             echo "you chose Install i3 package group"
             ####################################################################
             #i3 STUFF
             ####################################################################
-            echo "************installing i3 wm************"
+            title 'i3'
             isInstalled i3-wm
-            successOrFail 'i3wm installation'
-            echo "************installing i3 status************"
+            title 'i3status'
             isInstalled i3status
-            echo "************installing dmenu************"
+            title 'dmenu'
             isInstalled dmenu
-            echo "************installing i3 lock-blur************"
+            title 'i3lock-blur'
             isInstalled i3lock-blur
-            echo "************creating xinit with i3************"
+            title 'creating xinit with i3'
             cd ~/.dotfiles
             stow xinit
             cd ~/
             mkdir .config/i3
             cp .dotfiles/i3/config .config/i3/config
+            successOrFail 'copy i3 config '
+            clear
             ;;
         "Install node environment")
             echo "you chose node environment"
             ####################################################################
             # NODE
             ####################################################################
-            echo "************installing node enviroment************"
-            echo "************installing nvm************"
+            title 'nvm'
             yaourt -S  nvm
-            echo "************installing node stable************"
-            source -zshrc
-	    /bin/zsh -i -c 'nvm install stable'
+            title 'node stable'
+            source .zshrc
+	        /bin/zsh -i -c 'nvm install stable'
+            successOrFail 'node stable install '
+            clear
             ;;
         "Zsh/tmux/tmuxifier")
             echo "you chose Zsh/tmux/tmuxifier"
             ####################################################################
             #SHELL STUFF
             ####################################################################
-            echo "************installing zsh************"
+            title 'zsh'
             isInstalled zsh
-            echo "************installing oh-my-zsh************"
+            title 'oh-my-zsh'
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" #oh-my-zsh
-            echo "************installing tmux************"
+            title 'tmux'
             isInstalled tmux
-            echo "************installing tmuxifier************"
+            title 'tmuxifier'
             git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
-            echo "************configuring zsh and tmux************"
+            title 'configuring zsh and tmux'
 	        rm .zshrc
             cd ~/.dotfiles
             stow zsh
+            successOrFail '.zshrc install '
             stow tmux
+            successOrFail '.tmux.conf install '
             cd ~/
             rm -rf .tmuxifier/layouts
             cp -r .dotfiles/layouts .tmuxifier/layouts
+            successOrFail 'copy tmuxifier layouts'
+            clear
             ;;
         "Install vim")
             echo "you chose Install vim"
             ####################################################################
             #VIM
             ####################################################################
+            title 'vim'
             isInstalled vim
             cd ~/.dotfiles
             stow vim
+            successOrFail '.vimrc intall '
             cd ~/
             rm -rf .vim
             cp .dotfiles/.vim ~/
+            successOrFail 'copy .vim files '
+            clear
             ;;
         "Install atom")
             echo "you chose Install atom"
             ####################################################################
             # ATOM
             ####################################################################
-            echo "************installing atom************"
+            title 'atom'
             isInstalled atom-editor-git
             #atom packages
             echo "************installing atom packages************"
@@ -160,32 +180,35 @@ do
             apm install flex-tool-bar
             apm install git-plus
             apm install emmet
+            clear
             ;;
         "Themes")
             echo "you chose Themes"
             ####################################################################
             #OTHER SOFTWARE
             ####################################################################
-            echo "************installing nitrogen************"
+            title 'nitrogen'
             isInstalled nitrogen
-            echo "************installing arc theme************"
+            title 'gtk-arc-theme'
             isInstalled gtk-theme-arc
+            clear
             ;;
         "Install other")
             echo "you chose Install other"
             ####################################################################
             #OTHER SOFTWARE
             ####################################################################
-            echo "************installing gpick************"
+            title gpick
             isInstalled gpick
-            echo "************installing spotify************"
+            title spotify
             isInstalled spotify
-            echo "************installing ranger************"
+            title 'ranger'
             isInstalled ranger
-            echo "************installing dropbox************"
+            title 'ranger'
             isInstalled dropbox
-            echo "************installing chrome************"
+            title 'chrome'
             isInstalled google-chrome-stable
+            clear
             ;;
         "Quit")
             break
@@ -197,7 +220,4 @@ done
 ################################################################################
 #TODOS
 ################################################################################
-# Add tmuxifier session and layouts
-# chrome install
-# Add atom workspace
-# assign apps to workspaces (dotfile open in chrome)
+#ranger config
