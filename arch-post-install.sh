@@ -75,8 +75,8 @@ do
             isInstalled i3-wm
             echo "************installing i3 status************"
             isInstalled i3status
-            echo "************installing i3 blocks************"
-            isInstalled i3blocks
+            echo "************installing dmenu************"
+            isInstalled dmenu 
             echo "************installing i3 lock-blur************"
             isInstalled i3lock-blur
             echo "************creating xinit with i3************"
@@ -92,9 +92,10 @@ do
             ####################################################################
             echo "************installing node enviroment************"
             echo "************installing nvm************"
-            isInstalled nvm
+            yaourt -S  nvm
             echo "************installing node stable************"
-	        /bin/zsh -i -c 'nvm install stable'
+            source -zshrc
+	    /bin/zsh -i -c 'nvm install stable'
             ;;
         "Zsh/tmux/tmuxifier")
             echo "you chose Zsh/tmux/tmuxifier"

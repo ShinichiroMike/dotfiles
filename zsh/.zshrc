@@ -91,3 +91,4 @@ alias ns="tmuxifier load-session ns" #node session in Tmux
 alias killns="tmux kill-session -t ns" #kill node session in Tmux
 alias ans="tmux a -t ns" #atach to node session in Tmux
 # Vars
+source /usr/share/nvm/init-nvm.sh
