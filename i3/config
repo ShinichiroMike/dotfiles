@@ -60,7 +60,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -126,9 +126,8 @@ bindsym $mod+a focus parent
 
 # set workspaces
 set $workspace1 "1:web"
-set $workspace2 "2: tmux"
-set $workspace3 "3: term"
-set $workspace4 "4:temps"
+set $workspace2 "2:tmux"
+set $workspace3 "3:term"
 set $workspace9 "9:music"
 set $workspace10 "10:stuff"
 
@@ -208,32 +207,28 @@ bar {
         height 19
 #        status_command i3blocks -c ~/.i3/i3blocks.conf
         colors {
-                background  #2b303b
+                background  #282C34
                 statusline  #eff1f5
-                separator   #00FFFF
+                separator   #606060
 
-                #focused_workspace  #5FD7FF #5FD7FF5 #282828
-                #active_workspace   #444444 #444444 #00FFFF
+                focused_workspace  #4D9581 #4D9581 #282C34
+                active_workspace    #4D9581 #4D9581 #282C34
                 #inactive_workspace #2b303b #2b303b #eff1f5
-                #urgent_workspace  #2f343a #900000 #ffffff 
-		                    #border backgr. text
-	        focused_workspace  #5FD7FF #5FD7FF #282828 
-         	active_workspace   #323232 #5f676a #ebdbb2
-         	inactive_workspace #323232 #323232 #888888
-         	urgent_workspace   #333333 #900000 #ffffff
+                #urgent_workspace  #2f343a #900000 #ffffff
+		                        #border backgr. text
+	        #focused_workspace  #5FD7FF #5FD7FF #282828
+         	#active_workspace   #282C34 #282C34 #ebdbb2
+         	inactive_workspace  #282C34 #282C34 #888888
+         	urgent_workspace    #282C34 #900000 #ffffff
         }
 }
 
 # Colors
 # class                             border      backgr.     text
-client.focused                      #8fa1b3     #444444     #111111 
-#8fa1b3
-client.unfocused                    #65737e     #2B303B      #315858 
-#65737e
-client.focused_inactive             #65737e     #65737e     #315858 
-#65737e
-client.urgent                       #bf616a     #bf616a     #eff1f5 
-#bf616a
+client.focused                      #4D9581     #4D9581     #111111
+client.unfocused                    #444444     #444444      #315858
+client.focused_inactive             #65737e     #65737e     #315858
+client.urgent                       #bf616a     #bf616a     #eff1f5
 
 # Gaps
 # gaps inner 12
