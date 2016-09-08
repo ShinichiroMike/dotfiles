@@ -1,4 +1,4 @@
-## PACKAGES
+#! /bin/bash
 function isInstalled {
     package=$1
     if pacman -Qi $package > /dev/null ; then
@@ -9,27 +9,42 @@ function isInstalled {
         yaourt -S $package
     fi
 }
+function successOrFail {
+    if [ $? -eq 0 ]; then
+        echo OK
+    else
+        echo FAIL
+    fi
+}
 PS3='Please enter your choice: '
-options=("Config yaourt" "Install and configure git" "Install i3 package group" "Install node environment" "Zsh/tmux/tmuxifier" "Install vim" "Install atom" "Install other" "Quit")
+options=("Config yaourt" "Install and configure git" "Install i3 package group" "Install node environment" "Zsh/tmux/tmuxifier" "Install vim" "Install atom" "Themes" "Install other" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
         "Config yaourt")
             echo "you chose config yaourt"
+            echo "**************************************"
             echo "************configuring yaourt************"
+            echo "**************************************"
             touch .yaourtrc
+            successOrFail
             echo CONFIRM=1 >> .yaourtrc
             echo BUILD_NOCONFIRM=1 >> .yaourtrc
             echo EDITFILES=0 >> .yaourtrc
+            successOrFail
             ;;
         "Install and configure git")
             echo "you chose Install and configure git"
             ####################################################################
             # GIT
             ####################################################################
-            echo "************installing git************"
+            echo "**************************************"
+            echo "************INSTALLING GIT************"
+            echo "**************************************"
             isInstalled git
-            echo "************installing git extras************"
+            echo "**************************************"
+            echo "************INSTALLING GIT ESTRAS************"
+            echo "**************************************"
             isInstalled git-extras
             echo "************installing stow************"
             isInstalled stow
@@ -133,6 +148,16 @@ do
             apm install flex-tool-bar
             apm install git-plus
             apm install emmet
+            ;;
+        "Themes")
+            echo "you chose Themes"
+            ####################################################################
+            #OTHER SOFTWARE
+            ####################################################################
+            echo "************installing nitrogen************"
+            isInstalled nitrogen
+            echo "************installing nitrogen************"
+            isInstalled gtk-theme-arc
             ;;
         "Install other")
             echo "you chose Install other"

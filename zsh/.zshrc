@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/shinichirito/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="avit-oniwa"
+ZSH_THEME="avit"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 
@@ -85,12 +85,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#alias t=dev-tmux.sh
 alias td="tmux detach"
 alias no="nvm use v6.5.0"
 alias ns="tmuxifier load-session ns" #node session in Tmux
 alias killns="tmux kill-session -t ns" #kill node session in Tmux
 alias ans="tmux a -t ns" #atach to node session in Tmux
 # Vars
-export docs=/home/shinichirito/Documents
-source /usr/share/nvm/init-nvm.sh
