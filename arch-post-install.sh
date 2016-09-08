@@ -1,4 +1,12 @@
 #! /bin/bash
+function successOrFail {
+    if [ $? -eq 0 ]; then
+        echo $1 'done successfuly!'
+    else
+        echo $1 'has failed :('
+    fi
+}
+
 function isInstalled {
     package=$1
     if pacman -Qi $package > /dev/null ; then
@@ -7,15 +15,10 @@ function isInstalled {
     else
         echo "The package $package is not installed"
         yaourt -S $package
+        successOrFail $package
     fi
 }
-function successOrFail {
-    if [ $? -eq 0 ]; then
-        echo OK
-    else
-        echo FAIL
-    fi
-}
+
 PS3='Please enter your choice: '
 options=("Config yaourt" "Install and configure git" "Install i3 package group" "Install node environment" "Zsh/tmux/tmuxifier" "Install vim" "Install atom" "Themes" "Install other" "Quit")
 select opt in "${options[@]}"
@@ -23,15 +26,17 @@ do
     case $opt in
         "Config yaourt")
             echo "you chose config yaourt"
-            echo "**************************************"
+            echo "******************************************"
             echo "************configuring yaourt************"
-            echo "**************************************"
+            echo "******************************************"
             touch .yaourtrc
-            successOrFail
+            successOrFail 'create yaourtrc'
             echo CONFIRM=1 >> .yaourtrc
             echo BUILD_NOCONFIRM=1 >> .yaourtrc
             echo EDITFILES=0 >> .yaourtrc
-            successOrFail
+            successOrFail 'edit yaourt'
+            echo "************installing stow************"
+            isInstalled stow
             ;;
         "Install and configure git")
             echo "you chose Install and configure git"
@@ -43,11 +48,9 @@ do
             echo "**************************************"
             isInstalled git
             echo "**************************************"
-            echo "************INSTALLING GIT ESTRAS************"
+            echo "************INSTALLING GIT EXTRAS************"
             echo "**************************************"
             isInstalled git-extras
-            echo "************installing stow************"
-            isInstalled stow
             echo "************installing open-ssh************"
             isInstalled openssh
             echo "************creating ssh-key************"
@@ -60,9 +63,11 @@ do
             echo "************Dowloading dotfiles************"
             git clone git@github.com:ShinichiroMike/dotfiles.git
             mv dotfiles .dotfiles
+            successOrFail 'dotfiles installation'
             echo "************configuring git************"
             cd ~/.dotfiles
             stow git
+            successOrFail '.gitconfig installation'
             cd ~/
 
             ;;
@@ -73,17 +78,19 @@ do
             ####################################################################
             echo "************installing i3 wm************"
             isInstalled i3-wm
+            successOrFail 'i3wm installation'
             echo "************installing i3 status************"
             isInstalled i3status
             echo "************installing dmenu************"
-            isInstalled dmenu 
+            isInstalled dmenu
             echo "************installing i3 lock-blur************"
             isInstalled i3lock-blur
             echo "************creating xinit with i3************"
             cd ~/.dotfiles
             stow xinit
             cd ~/
-            echo "************Start manually i3 to configure and then copy the dotfiles************"
+            mkdir .config/i3
+            cp .dotfiles/i3/config .config/i3/config
             ;;
         "Install node environment")
             echo "you chose node environment"
@@ -116,6 +123,8 @@ do
             stow zsh
             stow tmux
             cd ~/
+            rm -rf .tmuxifier/layouts
+            cp -r .dotfiles/layouts .tmuxifier/layouts
             ;;
         "Install vim")
             echo "you chose Install vim"
@@ -126,6 +135,8 @@ do
             cd ~/.dotfiles
             stow vim
             cd ~/
+            rm -rf .vim
+            cp .dotfiles/.vim ~/
             ;;
         "Install atom")
             echo "you chose Install atom"
@@ -157,7 +168,7 @@ do
             ####################################################################
             echo "************installing nitrogen************"
             isInstalled nitrogen
-            echo "************installing nitrogen************"
+            echo "************installing arc theme************"
             isInstalled gtk-theme-arc
             ;;
         "Install other")
