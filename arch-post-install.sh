@@ -23,10 +23,6 @@ do
             yaourt -S git-extras
             echo "************installing stow************"
             yaourt -S stow
-            echo "************configuring git************"
-            cd ~/.dotfiles
-            stow git
-            cd ~/
             echo "************installing open-ssh************"
             yaourt -S openssh
             echo "************creating ssh-key************"
@@ -36,6 +32,14 @@ do
             cat id_rsa.pub
             read -n1 -r -p "Press any key to continue..."
             cd ~/
+            echo "************Dowloading dotfiles************"
+            git clone git@github.com:ShinichiroMike/dotfiles.git
+            mv dotfiles .dotfiles
+            echo "************configuring git************"
+            cd ~/.dotfiles
+            stow git
+            cd ~/
+
             ;;
         "Install i3 package group")
             echo "you chose Install i3 package group"
@@ -65,7 +69,7 @@ do
             echo "************installing nvm************"
             yaourt -S nvm
             echo "************installing node stable************"
-	    /bin/zsh -i -c 'nvm install stable'
+	        /bin/zsh -i -c 'nvm install stable'
             ;;
         "Zsh/tmux/tmuxifier")
             echo "you chose Zsh/tmux/tmuxifier"
@@ -81,7 +85,7 @@ do
             echo "************installing tmuxifier************"
             git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
             echo "************configuring zsh and tmux************"
-	    rm .zshrc
+	        rm .zshrc
             cd ~/.dotfiles
             stow zsh
             stow tmux
@@ -103,7 +107,7 @@ do
             # ATOM
             ####################################################################
             echo "************installing atom************"
-            yaourt -S atom-editor
+            yaourt -S atom-editor-git
             #atom packages
             echo "************installing atom packages************"
             apm install atom-beautify
