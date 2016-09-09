@@ -5,7 +5,7 @@ function successOrFail {
     else
         echo $1 'has failed :('
     fi
-    sleep 2
+    sleep 5
 }
 function title {
     echo "#####################################################################"
@@ -159,8 +159,12 @@ do
             successOrFail '.vimrc intall '
             cd ~/
             rm -rf .vim
-            cp .dotfiles/.vim ~/
+            cp -r .dotfiles/.vim ~/
             successOrFail 'copy .vim files '
+           curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 
+            successOrFail 'install vim plug '
+            vim :PlugInstall
             clear
             ;;
         "Install atom")
@@ -196,6 +200,7 @@ do
             isInstalled nitrogen
             title 'gtk-arc-theme'
             isInstalled gtk-theme-arc
+            isInstalled compton
             clear
             ;;
         "Install other")
@@ -209,10 +214,10 @@ do
             isInstalled spotify
             title 'ranger'
             isInstalled ranger
-            title 'ranger'
+            title 'dropbox'
             isInstalled dropbox
             title 'chrome'
-            isInstalled google-chrome-stable
+            isInstalled google-chrome
             clear
             ;;
         "Quit")
