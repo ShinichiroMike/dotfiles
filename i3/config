@@ -30,7 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal 
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -201,11 +201,10 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         mode dock
-        status_command i3blocks -c ~/.i3/i3blocks.conf
+        status_command i3status
         tray_output primary
         separator_symbol "|"
         height 19
-#        status_command i3blocks -c ~/.i3/i3blocks.conf
         colors {
                 background  #282C34
                 statusline  #eff1f5

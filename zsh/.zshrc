@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="avit"
+ZSH_THEME="avit-oniwa"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 
@@ -85,10 +85,26 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Tmux aliases
 alias td="tmux detach"
 alias no="nvm use v6.5.0"
 alias ns="tmuxifier load-session ns" #node session in Tmux
 alias killns="tmux kill-session -t ns" #kill node session in Tmux
 alias ans="tmux a -t ns" #atach to node session in Tmux
+
+# Npm aliases
+alias run="npm start"
+alias serve="npm run serve"
+
+# Yeoman react-webpack-redux aliases
+alias reducer="yo react-webpack-redux:reducer" $1
+alias action="yo react-webpack-redux:action" $1
+alias component="yo react-webpack-redux:component" $1
+alias container="yo react-webpack-redux:container" $1
+
+# React Boilerplate
+alias react="git clone git@github.com:gaearon/react-hot-boilerplate.git"
+
 # Vars
 source /usr/share/nvm/init-nvm.sh
