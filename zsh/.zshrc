@@ -53,12 +53,14 @@ eval "$(tmuxifier init -)"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
+plugins=(git zsh-syntax-highlighting)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -106,5 +108,7 @@ alias container="yo react-webpack-redux:container" $1
 # React Boilerplate
 alias react="git clone git@github.com:gaearon/react-hot-boilerplate.git"
 
+alias setpfolder="echo export pf='$PWD' >> ~/.zshrc"
 # Vars
 source /usr/share/nvm/init-nvm.sh
+export pf="/home/shinichirito/Web/yo-react-redux"

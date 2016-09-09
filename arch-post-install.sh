@@ -130,6 +130,10 @@ do
             isInstalled zsh
             title 'oh-my-zsh'
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" #oh-my-zsh
+            cd .oh-my-zsh/plugins
+            git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+            cd ~/
+            source .zshrc
             title 'tmux'
             isInstalled tmux
             title 'tmuxifier'
@@ -162,7 +166,7 @@ do
             cp -r .dotfiles/.vim ~/
             successOrFail 'copy .vim files '
            curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
             successOrFail 'install vim plug '
             vim :PlugInstall
             clear
