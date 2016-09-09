@@ -114,6 +114,11 @@ do
             source .zshrc
 	        /bin/zsh -i -c 'nvm install stable'
             successOrFail 'node stable install '
+            #npm global packages
+            title "npm install"
+            /bin/zsh -i -c 'nvm use stable'
+            /bin/zsh -i -c 'npm install -g yo'
+
             clear
             ;;
         "Zsh/tmux/tmuxifier")
