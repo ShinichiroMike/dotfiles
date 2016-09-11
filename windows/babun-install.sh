@@ -1,43 +1,26 @@
-#! /bin/bash
-function successOrFail {
-    if [ $? -eq 0 ]; then
-        echo $1 'done successfuly!'
-    else
-        echo $1 'has failed :('
-    fi
-    sleep 5
-}
-function title {
-    echo "#####################################################################"
-    echo "#"
-    echo "#"
-    echo "#"
-    echo "#"
-    echo "####### $1 "
-    echo "#"
-    echo "#"
-    echo "#"
-    echo "#"
-    echo "#"
-    echo "######################################################################"
-    sleep 5
-}
+#run this to execute this script /bin/dos2unix.exe babun-install.sh
+# Pact installation
+echo 'pact install'
+pact install chere
+pact install cygutils-extra
+pact install getent
+pact install stow
+pact install tmux
 ####################################################################
 # GIT
 ####################################################################
-title 'creating ssh key for github'
-ssh-keygen -t rsa -b 4096 -C "miguelo_0000@hotmail.com"
+#echo 'creating ssh key for github'
+#ssh-keygen -t rsa -b 4096 -C "miguelo_0000@hotmail.com"
 cd ~/.ssh
-chmod +x rsa_id.pub
+chmod 600 id_rsa.pub
+chmod 600 id_rsa
 cat id_rsa.pub
 read -n1 -r -p "Press any key to continue..."
 cd ~/
-title 'Dotfiles'
+echo 'Dotfiles'
 git clone git@github.com:ShinichiroMike/dotfiles.git
 mv dotfiles .dotfiles
-successOrFail 'dotfiles installation'
-title 'config git'
+echo 'config git'
 cd ~/.dotfiles
 stow git
-successOrFail '.gitconfig installation'
 cd ~/
