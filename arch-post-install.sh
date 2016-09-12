@@ -48,6 +48,8 @@ do
             echo BUILD_NOCONFIRM=1 >> .yaourtrc
             echo EDITFILES=0 >> .yaourtrc
             successOrFail 'edit yaourt'
+            title 'updating system'
+            yaourt -Syu
             title 'installing stow'
             isInstalled stow
             clear
@@ -222,6 +224,8 @@ do
             isInstalled dropbox
             title 'chrome'
             isInstalled google-chrome
+            title 'octopi'
+            isInstalled octopi
             clear
             ;;
         "Quit")
