@@ -1,9 +1,7 @@
 #run this to execute this script /bin/dos2unix.exe babun-install.sh
 # Pact installation
 echo 'pact install'
-pact install chere
 pact install cygutils-extra
-pact install getent
 pact install stow
 pact install tmux
 ####################################################################
