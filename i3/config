@@ -45,7 +45,10 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # MyBinds
 bindsym $mod+l exec i3lock
 exec --no-startup-id nitrogen --restore
-new_window 1pixel
+new_window none
+bindsym $mod+t border normal
+bindsym $mod+y border 1pixel
+bindsym $mod+u border none
 bindsym $mod+c exec google-chrome-stable
 bindsym $mod+n exec nautilus
 
@@ -125,37 +128,38 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # set workspaces
-set $workspace1 "1:web"
-set $workspace2 "2:tmux"
-set $workspace3 "3:term"
-set $workspace9 "9:music"
-set $workspace10 "10:stuff"
+#set $workspace1 "1:web"
+#set $workspace2 "2:tmux"
+#set $workspace3 "3:term"
+#set $workspace9 "9:music"
+#set $workspace10 "10:stuff"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
-assign [class="Spotify"] $workspace9
+assign [class="google-chrome"] 1
+assign [class="spotify"] 9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -201,36 +205,35 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         mode dock
-        status_command i3status
+        status_command i3blocks -c ~/.i3/i3blocks.conf
         tray_output primary
         separator_symbol "|"
+        height 19
+        #status_command i3status
         colors {
                 background  #282C34
                 statusline  #eff1f5
                 separator   #606060
 
-                focused_workspace  #4D9581 #4D9581 #282C34
-                active_workspace    #4D9581 #4D9581 #282C34
-                #inactive_workspace #2b303b #2b303b #eff1f5
-                #urgent_workspace  #2f343a #900000 #ffffff
-		                        #border backgr. text
-	        #focused_workspace  #5FD7FF #5FD7FF #282828
-         	#active_workspace   #282C34 #282C34 #ebdbb2
-         	inactive_workspace  #282C34 #282C34 #888888
-         	urgent_workspace    #282C34 #900000 #ffffff
+                                    #border     backgr.     text
+                focused_workspace   #DF5870     #DF5870     #282C34
+                active_workspace    #DF5870     #DF5870     #282C34
+                #inactive_workspace #2b303b     #2b303b     #eff1f5
+                #urgent_workspace   #5FD7FF     #5FD7FF     #ffffff
+
         }
 }
 
 # Colors
 # class                             border      backgr.     text
-client.focused                      #4D9581     #4D9581     #111111
-client.unfocused                    #444444     #444444      #315858
+client.focused                      #DF5870     #DF5870     #282C34
+client.unfocused                    #444444     #444444     #315858
 client.focused_inactive             #65737e     #65737e     #315858
 client.urgent                       #bf616a     #bf616a     #eff1f5
 
 # Gaps
-# gaps inner 12
-# smart_borders no_gaps
+gaps inner 6
+smart_borders no_gaps
 #
 # bindsym $mod+y gaps inner current minus 6
 # bindsym $mod+u gaps inner current plus 6
