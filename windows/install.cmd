@@ -32,6 +32,4 @@ apm install flex-tool-bar
 apm install git-plus
 apm install emmet
 
-// TODO: install packages for babun : pact
-// TODO: install atom packages : apm
 // TODO: configure dotfiles inside babun environment, also with stow

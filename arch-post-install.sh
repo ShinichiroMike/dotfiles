@@ -116,7 +116,7 @@ do
             source .zshrc
 	        /bin/zsh -i -c 'nvm install stable'
             successOrFail 'node stable install '
-            #npm global packages
+            # Npm global packages
             title "npm install"
             /bin/zsh -i -c 'nvm use stable'
             /bin/zsh -i -c 'npm install -g yo'
@@ -149,6 +149,7 @@ do
             successOrFail '.tmux.conf install '
             cd ~/
             rm -rf .tmuxifier/layouts
+            mkdir .tmuxifier/layouts
             cp -r .dotfiles/layouts .tmuxifier/layouts
             successOrFail 'copy tmuxifier layouts'
             clear
