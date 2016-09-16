@@ -3,11 +3,11 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
+export EDITOR=/usr/bin/vim
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="avit"
+ZSH_THEME="steeef"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 
@@ -53,8 +53,11 @@ eval "$(tmuxifier init -)"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+plugins=(git git-extras tmux node npm zsh-syntax-highlighting)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=cyan,bold'
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -87,14 +90,14 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+echo -ne "\033]12;Grey\007"
 # Tmux aliases
 alias td="tmux detach"
 alias no="nvm use v6.5.0"
 alias ns="tmuxifier load-session ns" #node session in Tmux
 alias killns="tmux kill-session -t ns" #kill node session in Tmux
 alias ans="tmux a -t ns" #atach to node session in Tmux
-
+alias tk="tmux kill-session"
 # Npm aliases
 alias run="npm start"
 alias serve="npm run serve"
@@ -108,7 +111,20 @@ alias container="yo react-webpack-redux:container" $1
 # React Boilerplate
 alias react="git clone git@github.com:gaearon/react-hot-boilerplate.git"
 
+# Working directory
 alias setpfolder="echo export pf='$PWD' >> ~/.zshrc"
+
+# Git
+alias gca="git add -A && git commit -m $1"
+alias gcm="git checkout master"
+alias gcb="git checkout -b $1"
+alias gl="git slog"
+alias gundo="git reset --hard $1"
 # Vars
 source /usr/share/nvm/init-nvm.sh
 export pf="/home/shinichirito/Web/yo-react-redux"
+
+
+#initialize Z (https://github.com/rupa/z) 
+. ~/z.sh 
+
