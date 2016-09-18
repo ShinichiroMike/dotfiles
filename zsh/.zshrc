@@ -53,7 +53,7 @@ eval "$(tmuxifier init -)"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras tmux node npm zsh-syntax-highlighting)
+plugins=(git git-extras tmux jsontools node npm zsh-syntax-highlighting)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
@@ -108,18 +108,42 @@ alias action="yo react-webpack-redux:action" $1
 alias component="yo react-webpack-redux:component" $1
 alias container="yo react-webpack-redux:container" $1
 
-# React Boilerplate
+# React Boilerplate aliases
 alias react="git clone git@github.com:gaearon/react-hot-boilerplate.git"
 
-# Working directory
+# Working directory aliases
 alias setpfolder="echo export pf='$PWD' >> ~/.zshrc"
 
-# Git
+# Git aliases
 alias gca="git add -A && git commit -m $1"
 alias gcm="git checkout master"
 alias gcb="git checkout -b $1"
 alias gl="git slog"
 alias gundo="git reset --hard $1"
+
+# Jsontools
+alias ppjson=printJson
+alias isjson=isJson
+function printJson() {
+    less $1 | pp_json
+}
+function isJson() {
+    less $1 | is_json
+}
+
+# Command aliases
+alias mkcd=cDir
+function cDir() {
+    mkdir $1
+    cd $1
+}
+alias resetfolder=rf
+function rf() {
+    rm -rf $1
+    mkdir $1
+    cd $1
+}
+
 # Vars
 source /usr/share/nvm/init-nvm.sh
 export pf="/home/shinichirito/Web/yo-react-redux"

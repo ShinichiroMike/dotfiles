@@ -31,5 +31,7 @@ apm install tool-bar
 apm install flex-tool-bar
 apm install git-plus
 apm install emmet
+apm install minimap
+apm install minimap-bookmarks
 
 // TODO: configure dotfiles inside babun environment, also with stow

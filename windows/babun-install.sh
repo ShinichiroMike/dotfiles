@@ -43,3 +43,6 @@ cp -r .dotfiles/layouts .tmuxifier/layouts
 # Npm global packages
 title "npm install"
 /bin/zsh -i -c 'npm install -g yo'
+/bin/zsh -i -c 'npm install -g generator-react-webpack-redux'
+/bin/zsh -i -c 'npm install -g webpack'
+/bin/zsh -i -c 'npm install -g gulp'

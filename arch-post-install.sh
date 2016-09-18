@@ -120,7 +120,9 @@ do
             title "npm install"
             /bin/zsh -i -c 'nvm use stable'
             /bin/zsh -i -c 'npm install -g yo'
-
+            /bin/zsh -i -c 'npm install -g generator-react-webpack-redux'
+            /bin/zsh -i -c 'npm install -g webpack'
+            /bin/zsh -i -c 'npm install -g gulp'
             clear
             ;;
         "Zsh/tmux/tmuxifier")
@@ -196,6 +198,8 @@ do
             apm install flex-tool-bar
             apm install git-plus
             apm install emmet
+            apm install minimap
+            apm install minimap-bookmarks
             clear
             ;;
         "Themes")
