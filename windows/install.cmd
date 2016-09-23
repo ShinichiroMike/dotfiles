@@ -33,5 +33,6 @@ apm install git-plus
 apm install emmet
 apm install minimap
 apm install minimap-bookmarks
-
+apm install sort-lines
+apm install stylus
 // TODO: configure dotfiles inside babun environment, also with stow

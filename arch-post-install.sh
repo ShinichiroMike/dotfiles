@@ -200,6 +200,8 @@ do
             apm install emmet
             apm install minimap
             apm install minimap-bookmarks
+            apm install sort-lines
+            apm install stylus
             clear
             ;;
         "Themes")
